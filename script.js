@@ -137,3 +137,72 @@ var swiper = new Swiper(".mySwiper", {
  tl.to("#loader",{
     display:"none"
  })
+ function ent(){
+
+   document.addEventListener('mousemove', function(e) {
+       const cursor = document.getElementById('cursor1');
+       cursor.style.left = e.pageX + 'px';
+       cursor.style.top = e.pageY + 'px';
+   });
+   
+   const cursor1 = document.getElementById('cursor1');
+   document.body.addEventListener('mouseenter', () => {
+       cursor1.classList.add('hover');
+   });
+   document.body.addEventListener('mouseleave', () => {
+       cursor1.classList.remove('hover');
+   });
+   
+   
+   }
+   ent();
+   
+   function dddd(){
+   document.addEventListener('DOMContentLoaded', () => {
+       const cursor = document.getElementById('cursor1');
+       document.addEventListener('mousemove', (e) => {
+           cursor.style.left = `${e.pageX}px`;
+           cursor.style.top = `${e.pageY}px`;
+       });
+   
+       const observer = new IntersectionObserver(entries => {
+           entries.forEach(entry => {
+               if (entry.isIntersecting) {
+                   entry.target.classList.add('in-view');
+               } else {
+                   entry.target.classList.remove('in-view');
+               }
+           });
+       });
+   
+       document.querySelectorAll('.circle1, .circle2, .rotating-svg').forEach(el => {
+           observer.observe(el);
+       });
+   });
+   }
+   dddd();
+                   // Close modal when clicking outside
+                   window.onclick = function (event) {
+                    var modals = document.getElementsByClassName('modal');
+                    for (var i = 0; i < modals.length; i++) {
+                        if (event.target == modals[i]) {
+                            modals[i].style.display = "none";
+                        }
+                    }
+                }
+
+                // Slideshow
+                let slideIndex = 0;
+                showSlides();
+
+                function showSlides() {
+                    let slides = document.getElementsByClassName("slides");
+                    for (let i = 0; i < slides.length; i++) {
+                        slides[i].style.display = "none";
+                    }
+                    slideIndex++;
+                    if (slideIndex > slides.length) { slideIndex = 1 }
+                    slides[slideIndex - 1].style.display = "block";
+                    setTimeout(showSlides, 1000); // Change image every 5 seconds
+                }
+   
